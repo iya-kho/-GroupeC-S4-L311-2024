@@ -30,9 +30,9 @@ include 'inc/inc.functions.php';
 		<div id="wrapper" class="divided">
 
 			<?php
-			// Verification si la cle 'page' existe dans la superglobale $_GET
-			// Correction : utilisation de array_key_exists (au lieu de array_key_exist) qui est la fonction correcte pour verifier l'existence d'une cle dans un tableau
-			getPagesTemplate(
+			// Correction : utilisation de getPageTemplate() au lieu de getPagesTemplate() 
+			// pour correspondre a la fonction definie dans inc.functions.php
+			getPageTemplate(
 				array_key_exists('page', $_GET) ? $_GET['page'] : null
 			);
 			?>
@@ -50,4 +50,3 @@ include 'inc/inc.functions.php';
 
 	</body>
 </html>
-
