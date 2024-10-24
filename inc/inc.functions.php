@@ -4,7 +4,8 @@
     define('TL_ROOT', dirname(__DIR__));
     define('LOGIN', 'UEL311');
     define('PASSWORD', 'U31311');
-    define('DB_ARTICLES', TL_ROOT.'/dbal/articles.json');
+    // Correction : /dbal/articles.json=> /db/articles.json
+    define('DB_ARTICLES', TL_ROOT.'/db/articles.json');  
 
     function connectUser($login = null, $password = null){
         if(!is_null($login) && !is_null($password)){
@@ -20,7 +21,9 @@
 
     function setDisconnectUser(){
          unset($_SESSION['User']);
-         sessions_destroy();
+         // Correction : sessions_destroy() => session_destroy()
+         // La fonction correcte pour detruire la session est session_destroy()
+         session_destroy();
     }
 
     function isConnected(){
@@ -36,24 +39,30 @@
         $fichier = TL_ROOT.'/pages/'.(is_null($page) ? 'index.php' : $page.'.php');
 
         if(!file_exists($fichier)){
-            inclde TL_ROOT.'/pages/index.php';
+            // Correction : inclde => include
+            // Erreur de frappe dans le mot "include"
+            include TL_ROOT.'/pages/index.php';
         }else{
             include $fichier;
         }
     }
 
     function getArticlesFromJson(){
-        if(file_exist(DB_ARTICLE)) {
-            $contenu_json = file_get_contents(DB_ARTICLE);
+        // Correction : file_exist => file_exists
+        // La fonction correcte est file_exists avec un 's'
+        if(file_exists(DB_ARTICLES)) {
+            $contenu_json = file_get_contents(DB_ARTICLES);
             return json_decode($contenu_json, true);
         }
 
         return null;
     }
 
-    function getArticleById($id_article == null){
-       if(file_exists(DB_ARTICLE)) {
-            $contenu_json = file_get_contents(DB_ARTICLE);
+    // Correction : $id_article == null => $id_article = null
+    // Correction dans la declaration du parametre avec un seul "=" pour la valeur par defaut
+    function getArticleById($id_article = null){
+       if(file_exists(DB_ARTICLES)) {
+            $contenu_json = file_get_contents(DB_ARTICLES);
             $_articles    = json_decode($contenu_json, true);
 
             foreach($_articles as $article){
@@ -65,3 +74,4 @@
 
         return null;
     }
+?>
