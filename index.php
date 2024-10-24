@@ -38,8 +38,8 @@ include 'inc/inc.functions.php';
 			?>
 
 			<?php 
-			// Inclusion du fichier du pied de page (footer)
-			include 'inc/tpls-footer.php'; 
+			// Inclusion du fichier du pied de page et correction du nom en 'tpl' et non 'tpls' (footer)
+			include 'inc/tpl-footer.php'; 
 			?>
 		</div>
 
