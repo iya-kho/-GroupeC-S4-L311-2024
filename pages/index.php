@@ -1,3 +1,4 @@
+<!-- Afficher le titre et description -->
 <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
 	<div class="content">
 		<h1>Mon [ blog ].</h1>
@@ -10,15 +11,18 @@
 		<img src="images/banner.jpg" alt="" />
 	</div>
 </section>
-
+<!-- Afficher la liste des articles-->
 <?php 
+// Récupérer les articles du fichier json
 	$_articles = getArticlesFromJson();
 
 	if($_articles && count($_articles)){
+		//Attribuer un numéro à chaque artiqle pour appliquer les styles différents
 		$compteur = 1;
 		foreach($_articles as $article){
 			$classCss = ($compteur % 2 == 0 ? 'left' : 'right');
-			##$compteur++;
+			// Augmenter le numéro pour chaque article
+			$compteur++;
 			?>
 				<section class="spotlight style1 orient-<?php echo $classCss;?>  content-align-left image-position-center onscroll-image-fade-in" id="first">
 					<div class="content">
@@ -29,7 +33,7 @@
 						</ul>
 					</div>
 					<div class="image">
-						<img src="<?php echo $art_icle['image'];?>" alt="" />
+						<img src="<?php echo $article['image'];?>" alt="" />
 					</div>
 				</section>
 
